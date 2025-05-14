@@ -1,0 +1,29 @@
+.driver-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.driver-card {
+    background: #fdfdfd;
+    transition: all 0.3s ease;
+}
+
+.f1-button {
+    background-color: #1E1E1E;
+    color: #FFFFFF;
+    border: 1px solid #ce3737;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+}
+
+.f1-button:hover {
+    background-color: #ce3737;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 30, 29, 0.2);
+}
+
+.f1-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}

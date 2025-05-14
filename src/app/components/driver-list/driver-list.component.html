@@ -1,0 +1,48 @@
+<!-- <div class="driver-list-container p-4">
+    <h2>Pilóták</h2>
+    @if (drivers.length === 0) {
+    <div>
+        <p>Nincs még pilóta a listában.</p>
+    </div>
+    }
+    
+    @for(driver of filteredDrivers; track driver.id) {
+    <div class="driver-card card mb-3 p-3 shadow rounded">
+        <h4>{{ driver.name }}</h4>
+        <p><strong>Csapat:</strong> {{ driver.team }}</p>
+        <p><strong>Rajtszám:</strong> {{ driver.number }}</p>
+        <p><strong>Nemzetiség:</strong> {{ driver.nationality }}</p>
+
+        <div class="buttons mt-2">
+            <button class="btn btn-primary me-2" (click)="onView(driver.id)">Részletek</button>
+            <button class="btn btn-warning me-2" (click)="onEdit(driver.id)">Szerkesztés</button>
+            <button class="btn btn-danger" (click)="onDelete(driver.id)">Törlés</button>
+        </div>
+    </div>
+    }
+</div> -->
+
+
+<div class="driver-list-container p-4">
+    <h2>Pilóták</h2>
+    @if (drivers.length === 0) {
+    <div>
+        <p>Nincs még pilóta a listában.</p>
+    </div>
+    }
+    
+    @for(driver of filteredDrivers; track driver.id) {
+    <div class="driver-card card mb-3 p-3 shadow rounded">
+        <h4>{{ driver.name }}</h4>
+        <p><strong>Csapat:</strong> {{ driver.team }}</p>
+        <p><strong>Rajtszám:</strong> {{ driver.number }}</p>
+        <p><strong>Nemzetiség:</strong> {{ driver.nationality }}</p>
+
+        <div class="buttons mt-2">
+            <button class="btn f1-button me-2" (click)="onView(driver.id)">Részletek</button>
+            <button class="btn f1-button me-2" (click)="onEdit(driver.id)">Szerkesztés</button>
+            <button class="btn f1-button" (click)="onDelete(driver.id)">Törlés</button>
+        </div>
+    </div>
+    }
+</div>

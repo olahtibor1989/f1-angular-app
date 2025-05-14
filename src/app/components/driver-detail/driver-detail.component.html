@@ -1,0 +1,21 @@
+@if(driver){
+<div class="driver-detail-container p-4">
+    <h2>{{ driver.name }}</h2>
+    <p><strong>Csapat:</strong> {{ driver.team }}</p>
+    <p><strong>Rajtszám:</strong> {{ driver.number }}</p>
+    <p><strong>Nemzetiség:</strong> {{ driver.nationality }}</p>
+    <p><strong>Kora:</strong> {{ driver.age }}</p>
+    <p><strong>GoogleUrl:</strong> {{driver.googleUrl}}</p>
+    <p><strong>Leírás:</strong> {{driver.description}}</p>
+    
+    <!--@if(driver.description){
+    <div>
+        <p><strong>Leírás:</strong></p>
+        <p>{{ driver.description }}</p>
+    </div>
+    }-->
+
+
+    <button class="btn btn-secondary mt-3" (click)="router.navigate(['/'])">Vissza a listához</button>
+</div>
+}

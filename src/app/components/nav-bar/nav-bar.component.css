@@ -1,0 +1,23 @@
+/* nav {
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .nav-link {
+  cursor: pointer;
+} */
+
+nav {
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+    cursor: pointer;
+    color: white !important;  /* Alapértelmezett fehér szín, felülírja a Bootstrap alapértelmezett színét */
+    opacity: 1;  /* Teljes átlátszatlanság */
+}
+
+.nav-link:hover {
+    color: #ff6b6b !important;  /* Világos piros szín hover esetén */
+}
