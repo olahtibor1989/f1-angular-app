@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
 import { Driver } from '../../_model/driver';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { DriverService } from '../../_services/driver.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
+
 @Component({
   selector: 'app-driver-form',
-  imports: [FormsModule,ReactiveFormsModule],
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './driver-form.component.html',
-  styleUrl: './driver-form.component.css'
+  styleUrl: './driver-form.component.css',
 })
 export class DriverFormComponent {
   form!: FormGroup;
@@ -26,24 +34,29 @@ export class DriverFormComponent {
     this.form = this.fb.group({
       name: ['', Validators.required],
       team: ['', Validators.required],
-      number: ['',Validators.required],
+      number: ['', Validators.required],
       nationality: ['', Validators.required],
       age: ['', Validators.required],
       googleUrl: [''],
-      description: ['']
+      description: [''],
     });
 
     this.driverId = this.route.snapshot.paramMap.get('id') || undefined;
-    if (this.driverId) {
-      const driver = this.driverService.getDriverById(this.driverId);
-      if (driver) {
-        this.isEdit = true;
-        this.form.patchValue(driver);
-      } else {
-        alert('A pilóta nem található.');
-        this.router.navigate(['/']);
+
+    this.driverService.loadDrivers().subscribe((drivers) => {
+      console.log('Betöltött pilóták:', drivers);
+
+      if (this.driverId) {
+        const driver = drivers.find((d) => d.id === this.driverId);
+        if (driver) {
+          this.isEdit = true;
+          this.form.patchValue(driver);
+        } else {
+          alert('A pilóta nem található.');
+          this.router.navigate(['/']);
+        }
       }
-    }
+    });
   }
 
   onSubmit(): void {
@@ -62,5 +75,3 @@ export class DriverFormComponent {
     this.router.navigate(['/']);
   }
 }
-
-

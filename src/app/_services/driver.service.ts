@@ -68,7 +68,7 @@ export class DriverService {
     }
 
     private saveDrivers(): void {
-        // Mentsük a frissített könyveket a localStorage-ba
+        // Mentsük a frissített pilótákat a localStorage-ba
         localStorage.setItem(this.localStorageKey, JSON.stringify(this.drivers));
         console.log('Pilóták mentve a localStorage-ba:', this.drivers);
       }

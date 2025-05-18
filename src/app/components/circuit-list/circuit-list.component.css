@@ -1,0 +1,22 @@
+.driver-list-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.driver-card {
+  background: #fdfdfd;
+  transition: all 0.3s ease;
+}
+
+iframe {
+  border: none;
+  border-radius: 4px;
+}
+
+.circuit-modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+
+

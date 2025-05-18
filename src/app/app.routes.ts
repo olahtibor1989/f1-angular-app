@@ -7,6 +7,16 @@ export const routes: Routes = [
   { path: 'driver/:id', component: DriverDetailComponent },
   { path: '', component: DriverListComponent },
   { path: 'add-driver', component: DriverFormComponent },
-{ path: 'edit-driver/:id', component: DriverFormComponent },
-  { path: '**', redirectTo: '' }
+  { path: 'edit-driver/:id', component: DriverFormComponent },
+
+  // 🆕 Pályák route - lazy load a standalone komponenshez
+  {
+    path: 'circuits',
+    loadComponent: () =>
+      import('./components/circuit-list/circuit-list.component').then(
+        (m) => m.CircuitListComponent
+      ),
+  },
+
+  { path: '**', redirectTo: '' },
 ];

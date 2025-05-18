@@ -65,10 +65,7 @@
             },
             "development": {
               "buildTarget": "f1-angular-app:build:development"
-            },
-            "options": {
-            "port": 4300
-          }
+            }
           },
           "defaultConfiguration": "development"
         },

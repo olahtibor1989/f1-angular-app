@@ -1,25 +1,25 @@
-import { Component, inject } from '@angular/core';
-import { DriverService } from '../../_services/driver.service';
-import { Router } from '@angular/router';
-import { Driver } from '../../_model/driver';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { DriverService } from '../../_services/driver.service';
+import { Driver } from '../../_model/driver';
 
 @Component({
   selector: 'app-driver-list',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule], // 🟢 FONTOS! CommonModule kell az *ngFor-hoz
   templateUrl: './driver-list.component.html',
-  styleUrl: './driver-list.component.css'
+  styleUrl: './driver-list.component.css',
 })
 export class DriverListComponent {
   drivers: Driver[] = [];
 
   searchTerm: string = '';
-
   selectedNumber: number = 0;
   selectedNationality: string = '';
 
-  driverService = inject(DriverService);
-  router = inject(Router);
+  constructor(private driverService: DriverService, private router: Router) {}
 
   ngOnInit(): void {
     this.driverService.loadDrivers().subscribe((drivers) => {
@@ -43,13 +43,23 @@ export class DriverListComponent {
     }
   }
 
-
   get filteredDrivers(): Driver[] {
-      return this.drivers.filter(driver => 
-        (driver.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
-        driver.team.toLowerCase().includes(this.searchTerm.toLowerCase())) &&
+    return this.drivers.filter(
+      (driver) =>
+        (driver.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          driver.team.toLowerCase().includes(this.searchTerm.toLowerCase())) &&
         (this.selectedNumber ? driver.number === this.selectedNumber : true) &&
-        (this.selectedNationality ? driver.nationality === this.selectedNationality : true)
-      );
+        (this.selectedNationality
+          ? driver.nationality === this.selectedNationality
+          : true)
+    );
+  }
+
+  get uniqueNationalities(): string[] {
+    return [
+      ...new Set(
+        this.drivers.map((d) => d.nationality).filter((n): n is string => !!n)
+      ),
+    ];
   }
 }
